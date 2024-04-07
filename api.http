@@ -1,0 +1,11 @@
+
+###
+GET http://localhost:3000/questions
+
+###
+POST http://localhost:3000/questions
+Content-Type: application/json
+{
+    "body": "Lorem lorem lorem",
+    "answer": "a",
+}
