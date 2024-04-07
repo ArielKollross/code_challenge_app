@@ -13,30 +13,30 @@ services:
     ports:
       - '5432:5432'
 
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: code-challenge-app
-    environment:
-      - PORT=${PORT}
-    ports:
-      - '3000:3000'
-    links:
-      - postgres
-    depends_on:
-      - postgres
-    volumes:
-      - ./src:/app/src
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: code-challenge-app
+  #   environment:
+  #     - PORT=${PORT}
+  #   ports:
+  #     - '3000:3000'
+  #   links:
+  #     - postgres
+  #   depends_on:
+  #     - postgres
+  #   volumes:
+  #     - ./src:/app/src
   
-  pgadmin:
-    image: dpage/pgadmin4 
-    restart: always 
-    container_name: nest-pgadmin4 
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com 
-      - PGADMIN_DEFAULT_PASSWORD=123123 
-    ports: 
-      - '5050:80' 
-    depends_on: 
-        - postgres
+  # pgadmin:
+  #   image: dpage/pgadmin4 
+  #   restart: always 
+  #   container_name: nest-pgadmin4 
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@admin.com 
+  #     - PGADMIN_DEFAULT_PASSWORD=123123 
+  #   ports: 
+  #     - '5050:80' 
+  #   depends_on: 
+  #       - postgres

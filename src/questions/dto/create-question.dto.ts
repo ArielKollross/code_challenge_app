@@ -1,4 +1,4 @@
 export class CreateQuestionDto {
-    body: string;
-    answer: string;
+  body: string;
+  answer: string;
 }

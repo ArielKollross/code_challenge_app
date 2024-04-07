@@ -9,26 +9,36 @@ import { Question } from './entities/question.entity';
 export class QuestionsService {
   constructor(
     @InjectRepository(Question)
-    private questionRepository: Repository<Question>,
+    private questionsRepository: Repository<Question>,
   ) {}
 
-  create(createQuestionDto: CreateQuestionDto) {
-    return 'This action adds a new question';
+  async create(createQuestionDto: CreateQuestionDto): Promise<Question> {
+    const question = this.questionsRepository.create({
+      body: createQuestionDto.body,
+      answer: createQuestionDto.answer,
+    });
+
+    await this.questionsRepository.save(question);
+
+    return question;
   }
 
-  findAll() {
-    return `This action returns all questions`;
+  async findAll(): Promise<Question[]> {
+    return await this.questionsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} question`;
+  async findOne(id: string): Promise<Question | undefined> {
+    return await this.questionsRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateQuestionDto: UpdateQuestionDto) {
-    return `This action updates a #${id} question`;
+  async update(id: string, updateQuestionDto: UpdateQuestionDto) {
+    return await this.questionsRepository.update(id, {
+      body: updateQuestionDto.body,
+      answer: updateQuestionDto.body,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} question`;
+  async remove(id: string): Promise<void> {
+    await this.questionsRepository.delete(id);
   }
 }
