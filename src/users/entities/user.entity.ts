@@ -1,26 +1,24 @@
-import { Exam } from 'src/exams/entities/exam.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'questions' })
-export class Question {
+@Entity({ name: 'users' })
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false, type: 'varchar' })
-  body: string;
+  name: string;
 
   @Column({ nullable: false, type: 'varchar' })
-  answer: string;
+  email: string;
 
-  @ManyToMany(() => Exam, (exam) => exam.questions)
-  exams: Exam[];
+  @Column({ nullable: false, type: 'varchar' })
+  password: string;
 
   @CreateDateColumn()
   createdAt: Date;
